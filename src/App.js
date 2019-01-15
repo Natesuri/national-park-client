@@ -9,6 +9,7 @@ import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
 import Home from './parks/components/Home'
+import ExploreParks from './parks/components/ExploreParks'
 
 class App extends Component {
   constructor () {
@@ -45,6 +46,9 @@ class App extends Component {
         <div className="">
           <Route exact path='/' render={() => (
             <Home flash={this.flash} />
+          )} />
+          <Route exact path='/exploreParks' render={() => (
+            <ExploreParks flash={this.flash} user={user}/>
           )} />
           <Route path='/sign-up' render={() => (
             <SignUp flash={this.flash} setUser={this.setUser} />
