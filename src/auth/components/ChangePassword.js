@@ -19,7 +19,7 @@ class ChangePassword extends Component {
     [event.target.name]: event.target.value
   })
 
-  changePassword = event => {
+  onChangePassword = event => {
     event.preventDefault()
 
     const { oldPassword, newPassword } = this.state
@@ -36,7 +36,7 @@ class ChangePassword extends Component {
     const { oldPassword, newPassword } = this.state
 
     return (
-      <form className='auth-form' onSubmit={this.changePassword}>
+      <form className='auth-form' onSubmit={this.onChangePassword}>
         <h3>Change Password</h3>
 
         <label htmlFor="oldpw">Old Password</label>
