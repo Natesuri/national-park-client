@@ -38,6 +38,7 @@ $charcoal: #ccc;
   background-image: url('./images/yosemite_2k-px.jpg');
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
   display: flex;
   height: 92vh;
   flex-direction: column;
@@ -53,6 +54,10 @@ $charcoal: #ccc;
 }
 
 .exploreParks {
+  background-image: url('./images/yosemite_2k-px.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   display: flex;
   height: 92vh;
   flex-direction: column;
