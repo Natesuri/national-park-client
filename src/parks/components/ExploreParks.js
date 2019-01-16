@@ -10,13 +10,17 @@ class ExploreParks extends Component {
 
     this.state = {
       parks: [],
-      image: null
+      image: null,
+      currentPark: null
     }
   }
 
-  handleChange = event => this.setState({
-    [event.target.name]: event.target.value
-  })
+  handleChange = event => {
+    this.setState({
+      currentPark: this.state.parks[event.target.value],
+      image: this.state.parks[event.target.value].images[0].url
+    })
+  }
 
   componentDidMount () {
     const { user } = this.props
@@ -25,7 +29,9 @@ class ExploreParks extends Component {
       .then(res => res.json())
       .then(res => {
         this.setState(
-          { parks: res.parks, image: res.parks[0].images[0].url }
+          { parks: res.parks,
+            image: res.parks[0].images[0].url,
+            currentPark: res.parks[0]}
         )
         return res
       })
@@ -38,7 +44,12 @@ class ExploreParks extends Component {
     const background = { backgroundImage: 'url(' + this.state.image + ')' }
     return (
       <div className='exploreParks' style={background}>
-        { this.state.parks[0] && <h1>{this.state.parks[0].name}</h1>}
+        { this.state.currentPark && <h1>{this.state.currentPark.name}</h1>}
+        <select name='currentPark' onChange={this.handleChange}>
+          { this.state.parks.map((park, parkIndex) => (
+            <option key={ parkIndex } value={ parkIndex }>{ park.name }</option>
+          )) }
+        </select>
         <div className='buttons'>
           <button><Link to="/exploreParks/park">Learn More about Park</Link></button>
         </div>
