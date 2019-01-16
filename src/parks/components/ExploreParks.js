@@ -51,7 +51,10 @@ class ExploreParks extends Component {
           )) }
         </select>
         <div className='buttons'>
-          <button><Link to="/exploreParks/park">Learn More about Park</Link></button>
+          <button>
+            <Link to="/exploreParks/park">Learn More about { this.state.currentPark
+                && <span> {this.state.currentPark.name} </span> }
+            </Link></button>
         </div>
       </div>
     )
