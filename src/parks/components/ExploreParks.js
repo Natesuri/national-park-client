@@ -9,7 +9,8 @@ class ExploreParks extends Component {
     super()
 
     this.state = {
-      parks: []
+      parks: [],
+      image: null
     }
   }
 
@@ -22,15 +23,21 @@ class ExploreParks extends Component {
 
     getAllParks(user)
       .then(res => res.json())
-      .then(res => this.setState(
-        { parks: res.parks }
-      ))
+      .then(res => {
+        this.setState(
+          { parks: res.parks, image: res.parks[0].images[0].url }
+        )
+        return res
+      })
+      .then()
       .catch(console.error)
   }
 
   render () {
+
+    const background = { backgroundImage: 'url(' + this.state.image + ')' }
     return (
-      <div className='exploreParks'>
+      <div className='exploreParks' style={background}>
         { this.state.parks[0] && <h1>{this.state.parks[0].name}</h1>}
         <div className='buttons'>
           <button><Link to="/exploreParks/park">Learn More about Park</Link></button>
