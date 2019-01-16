@@ -45,12 +45,12 @@ class ExploreParks extends Component {
     return (
       <div className='exploreParks' style={background}>
         { this.state.currentPark && <h1>{this.state.currentPark.name}</h1>}
-        <select name='currentPark' onChange={this.handleChange}>
-          { this.state.parks.map((park, parkIndex) => (
-            <option key={ parkIndex } value={ parkIndex }>{ park.name }</option>
-          )) }
-        </select>
         <div className='buttons'>
+          <select name='currentPark' onChange={this.handleChange}>
+            { this.state.parks.map((park, parkIndex) => (
+              <option key={ parkIndex } value={ parkIndex }>{ park.name }</option>
+            )) }
+          </select>
           <button>
             <Link to="/exploreParks/park">Learn More about { this.state.currentPark
                 && <span> {this.state.currentPark.name} </span> }
