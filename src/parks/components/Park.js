@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Link } from 'react-router-dom'
+import { Route, Link, withRouter } from 'react-router-dom'
 import { getAllParks } from '../parksApi'
 
 
@@ -13,7 +13,7 @@ class Park extends Component {
     }
   }
 
-  handleChange = (event) => {
+  handleChange = event => {
     const change = event.target.value
     console.log( this.state.currentImage + Number(change))
     this.setState(prev => {
@@ -21,11 +21,22 @@ class Park extends Component {
     })
   }
 
+  addFavorite = event => {
+    const { user, history } = this.props
+
+    const favorite = event.target.value
+
+    console.log('you here')
+
+    user
+      ? console.log('you signed in')
+      : history.push('/sign-in')
+  }
   // use redirect to stop direct access
 
   render () {
 
-    const { parks, image, currentPark } = this.props
+    const { parks, image, currentPark, user } = this.props
 
     const parkImage = currentPark.images
 
@@ -51,15 +62,15 @@ class Park extends Component {
               <button value={1} onClickCapture={this.handleChange}>
                 Next Picture
               </button> }
-          <button>
-            { currentPark &&
-              <Link to={'/exploreParks/parks/' + currentPark.name }> Add { currentPark.name } to Favorite Parks</Link>
-            }
-          </button>
+          { currentPark &&
+            <button onClickCapture={this.addFavorite} value={currentPark.parkCode}>
+              Add { currentPark.name } to Favorite Parks
+            </button>
+          }
         </div>
       </div>
     )
   }
 }
 
-export default Park
+export default withRouter(Park)
