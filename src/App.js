@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './App.scss'
-import { Route, Link } from 'react-router-dom'
+import { Route, Link, Redirect } from 'react-router-dom'
 
 import AuthenticatedRoute from './auth/components/AuthenticatedRoute'
 import Header from './header/Header'
@@ -10,6 +10,7 @@ import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
 import Home from './parks/components/Home'
 import ExploreParks from './parks/components/ExploreParks'
+import Park from './parks/components/Park'
 
 class App extends Component {
   constructor () {
@@ -59,6 +60,14 @@ class App extends Component {
               currentPark={currentPark}
               setParks={this.setParks}/>
           )} />
+          <Route path='/exploreParks/parks' render={() => (
+            !this.state.parks[0]
+              ? <Redirect to='/' />
+              :<Park flash={this.flash}
+                user={user}
+                parks={parks}
+                image={image}
+                currentPark={currentPark}/>
           )} />
           <Route path='/sign-up' render={() => (
             <SignUp flash={this.flash} setUser={this.setUser} />
