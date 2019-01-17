@@ -8,27 +8,24 @@ class ExploreParks extends Component {
   constructor () {
     super()
 
-    this.state = {
-      parks: [],
-      image: null,
-      currentPark: null
-    }
   }
 
   handleChange = event => {
-    this.setState({
-      currentPark: this.state.parks[event.target.value],
-      image: this.state.parks[event.target.value].images[0].url
+    const { parks, setParks } = this.props
+    setParks({
+      parks,
+      currentPark: parks[event.target.value],
+      image: parks[event.target.value].images[0].url
     })
   }
 
   componentDidMount () {
-    const { user } = this.props
+    const { user, setParks, parks, image, currentPark } = this.props
 
     getAllParks(user)
       .then(res => res.json())
       .then(res => {
-        this.setState(
+        setParks(
           { parks: res.parks,
             image: res.parks[0].images[0].url,
             currentPark: res.parks[0]}
@@ -40,21 +37,24 @@ class ExploreParks extends Component {
   }
 
   render () {
+    const { parks, image, currentPark } = this.props
 
-    const background = { backgroundImage: 'url(' + this.state.image + ')' }
+    const background = { backgroundImage: 'url(' + image + ')' }
     return (
       <div className='exploreParks' style={background}>
-        { this.state.currentPark && <h1>{this.state.currentPark.name}</h1>}
+        { currentPark && <h1>{currentPark.name}</h1>}
         <div className='buttons'>
           <select name='currentPark' onChange={this.handleChange}>
-            { this.state.parks.map((park, parkIndex) => (
+            { parks.map((park, parkIndex) => (
               <option key={ parkIndex } value={ parkIndex }>{ park.name }</option>
             )) }
           </select>
           <button>
-            <Link to="/exploreParks/park">Learn More about { this.state.currentPark
-                && <span> {this.state.currentPark.name} </span> }
-            </Link></button>
+            { currentPark &&
+              <Link to={'/exploreParks/parks/' + currentPark.name }>Learn More about { currentPark.name }
+              </Link>
+            }
+          </button>
         </div>
       </div>
     )

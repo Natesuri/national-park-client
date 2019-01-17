@@ -18,13 +18,18 @@ class App extends Component {
     this.state = {
       user: null,
       flashMessage: '',
-      flashType: null
+      flashType: null,
+      parks: [],
+      image: null,
+      currentPark: null
     }
   }
 
   setUser = user => this.setState({ user })
 
   clearUser = () => this.setState({ user: null })
+
+  setParks = ({parks, image, currentPark}) => this.setState({ parks, image, currentPark })
 
   flash = (message, type) => {
     this.setState({ flashMessage: message, flashType: type })
@@ -36,7 +41,7 @@ class App extends Component {
   }
 
   render () {
-    const { flashMessage, flashType, user } = this.state
+    const { flashMessage, flashType, user, parks, image, currentPark } = this.state
 
     return (
       <React.Fragment>
@@ -48,7 +53,12 @@ class App extends Component {
             <Home flash={this.flash} />
           )} />
           <Route exact path='/exploreParks' render={() => (
-            <ExploreParks flash={this.flash} user={user}/>
+            <ExploreParks flash={this.flash} user={user}
+              parks={parks}
+              image={image}
+              currentPark={currentPark}
+              setParks={this.setParks}/>
+          )} />
           )} />
           <Route path='/sign-up' render={() => (
             <SignUp flash={this.flash} setUser={this.setUser} />
