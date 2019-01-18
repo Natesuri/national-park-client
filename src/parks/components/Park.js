@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Route, Link, withRouter } from 'react-router-dom'
-import { getAllParks } from '../parksApi'
+import { addToParks } from '../parksApi'
 
 
 
@@ -22,14 +22,27 @@ class Park extends Component {
   }
 
   addFavorite = event => {
-    const { user, history } = this.props
+    const { user, history, flash, setUser } = this.props
 
     const favorite = event.target.value
 
-    console.log('you here')
 
     user
-      ? console.log('you signed in')
+      ? addToParks(user, favorite)
+        .then(res => res.json())
+        .then(res => {
+          setUser(
+            {
+              userList: res.favoriteParks._id,
+              email: user.email,
+              token: user.token,
+              _id: user._id
+            }
+          )
+          return res
+        }
+        )
+        .catch(console.error)
       : history.push('/sign-in')
   }
   // use redirect to stop direct access

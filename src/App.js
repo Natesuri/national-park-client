@@ -67,7 +67,8 @@ class App extends Component {
                 user={user}
                 parks={parks}
                 image={image}
-                currentPark={currentPark}/>
+                currentPark={currentPark}
+                setUser={this.setUser}/>
           )} />
           <Route path='/sign-up' render={() => (
             <SignUp flash={this.flash} setUser={this.setUser} />
