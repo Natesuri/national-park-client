@@ -29,6 +29,103 @@ $charcoal: #ccc;
   background-color: $error;
 }
 
+// .sidebar {
+//   width: 0;
+//   transition: width 1s;
+// }
+
+.home {
+  background-image: url('./images/yosemite_2k-px.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  height: 92vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px 0;
+
+  button {
+    width: 30%;
+    border-radius: 20px;
+    height: 50px;
+  }
+}
+
+.exploreParks {
+  background-image: url('./images/yosemite_2k-px.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  height: 92vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px 0;
+}
+
+.park {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  height: 92vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px 0;
+}
+
+.info {
+  p {
+    font-size: 20px;
+  }
+
+  h6 {
+    font-size: 22px;
+  }
+
+  background: rgba(400, 400, 400, 0.8);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  width: 50%;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  // padding: 10px;
+  // margin: 10px;
+
+  select {
+    &:focus {
+      outline: none;
+    }
+
+    width: 30%;
+    border-radius: 20px;
+    height: 50px;
+    margin: 15px 0;
+  }
+
+  button {
+    &:focus {
+      outline: none;
+    }
+    width: 30%;
+    border-radius: 20px;
+    height: 50px;
+    margin: 15px 0;
+  }
+}
+
 .auth-form {
   display: flex;
   flex-direction: column;

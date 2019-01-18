@@ -1,4 +1,7 @@
-const apiUrl = 'http://localhost:4741'
+import apiUrl from '../apiConfig'
+
+
+// const apiUrl = 'http://localhost:4741'
 
 export const handleErrors = res => {
   if (res.ok) {
