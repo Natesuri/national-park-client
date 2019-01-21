@@ -11,6 +11,7 @@ import ChangePassword from './auth/components/ChangePassword'
 import Home from './parks/components/Home'
 import ExploreParks from './parks/components/ExploreParks'
 import Park from './parks/components/Park'
+import Favorites from './parks/components/Favorites'
 
 class App extends Component {
   constructor () {
@@ -40,6 +41,9 @@ class App extends Component {
 
   // a method passed down as props for setting state for parks, image and currentPark
   setParks = ({parks, image, currentPark}) => this.setState({ parks, image, currentPark })
+
+  // a method passed down as props for setting state for parks
+  updateParks = ({parks}) => this.setState({parks})
 
   // flash messaging method passed down as a prop.
   flash = (message, type) => {
@@ -81,6 +85,15 @@ class App extends Component {
                 image={image}
                 currentPark={currentPark}
                 setUser={this.setUser}/>
+          )} />
+          <Route path='/favorites' render={() => (
+            !user
+              ? <Redirect to='/' />
+              : <Favorites
+                updateParks={this.updateParks}
+                flash={this.flash}
+                user={user}
+                parks={parks}/>
           )} />
           <Route path='/sign-up' render={() => (
             <SignUp flash={this.flash} setUser={this.setUser} />
