@@ -16,6 +16,13 @@ class App extends Component {
   constructor () {
     super()
 
+
+    // contains all global states
+    // User contains the entire user object
+    // flash states are used for displaying flash messages.
+    // parks contains all parks loaded to the page from the exploreParks route.
+    // image contains the url for the 0 index of the currentPark
+    // current park refers to the object located at the selected index in the parks array.
     this.state = {
       user: null,
       flashMessage: '',
@@ -26,12 +33,15 @@ class App extends Component {
     }
   }
 
+  // user state setting method.
   setUser = user => this.setState({ user })
 
   clearUser = () => this.setState({ user: null })
 
+  // a method passed down as props for setting state for parks, image and currentPark
   setParks = ({parks, image, currentPark}) => this.setState({ parks, image, currentPark })
 
+  // flash messaging method passed down as a prop.
   flash = (message, type) => {
     this.setState({ flashMessage: message, flashType: type })
 
@@ -61,6 +71,8 @@ class App extends Component {
               setParks={this.setParks}/>
           )} />
           <Route path='/exploreParks/parks' render={() => (
+            /* if a user tries go directly to a specific park before park info is
+            fetched, they are redirected to the home page */
             !this.state.parks[0]
               ? <Redirect to='/' />
               :<Park flash={this.flash}

@@ -13,20 +13,25 @@ class Park extends Component {
     }
   }
 
+  // allows the user to cycle through available images of the currentPark.
   handleChange = event => {
+    // grabs the value of the clicked button
     const change = event.target.value
-    console.log( this.state.currentImage + Number(change))
+    // changes currentImage by adding or subtracting one based on the buttons value
     this.setState(prev => {
       return {currentImage: prev.currentImage + Number(change) }
     })
   }
 
+  // allows a user to add a park to their favoriteParks list.
   addFavorite = event => {
     const { user, history, flash, setUser } = this.props
 
+    // grabs the parkCode of the currentPark
     const favorite = event.target.value
 
-
+    // if the user is signed in, send user info and favorite
+    // to the api's update or create endpoint.
     user
       ? addToParks(user, favorite)
         .then(res => res.json())
@@ -43,6 +48,7 @@ class Park extends Component {
         }
         )
         .catch(console.error)
+        // otherwise, redirect the user to sign-in
       : history.push('/sign-in')
   }
   // use redirect to stop direct access
@@ -53,6 +59,8 @@ class Park extends Component {
 
     const parkImage = currentPark.images
 
+    // sets the backgroundImage to the url in the currentPark images array at the currentImage index.
+    // SHOULD FIND PLACE ON PAGE TO CREDIT THE PHOTOGRAPHER
     const background = { backgroundImage: 'url(' + parkImage[this.state.currentImage].url + ')' }
     return (
       <div className='park' style={background}>
@@ -67,6 +75,8 @@ class Park extends Component {
         }
 
         <div className='buttons'>
+          {/* only display prev and next button when there is an image
+            at the currentImage-1 index or currentImage+1 index in the currentPark.images array*/}
           { parkImage[this.state.currentImage - 1] &&
               <button value={-1} onClickCapture={this.handleChange}>
                 Prev Picture
@@ -77,6 +87,8 @@ class Park extends Component {
               </button> }
           { currentPark &&
             <button onClickCapture={this.addFavorite} value={currentPark.parkCode}>
+              {/* need to modify so that it displays "remove" when the user already has this
+                park in their favoriteParks list*/}
               Add { currentPark.name } to Favorite Parks
             </button>
           }
