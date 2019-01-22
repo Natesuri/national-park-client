@@ -26,7 +26,7 @@ const alwaysOptions = (
 const Header = ({ user }) => (
   <header className="main-header">
     <h4>National Park Finder</h4>
-    { user && user.userList && <Link to="/favorites">My favorites</Link>}
+    { user && user.userFavorites && <Link to="/favorites">My favorites</Link>}
     <nav>
       { user && <span>Welcome, {user.email}</span>}
       { user ? authenticatedOptions : unauthenticatedOptions }

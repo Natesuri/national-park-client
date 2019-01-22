@@ -6,20 +6,21 @@ import apiUrl from '../apiConfig'
 // the default parks list (if not signed in),
 // or a combination of both (if the user is signed in, but has fewer than 10 favorites.)
 
-// userList contains the _id for a user's favoriteParks if they have one.
+// userFavorites contains the _id for a user's favoriteParks if they have one.
 export const getAllParks = ( user ) => (
-  user && user.userList
-    ? fetch(apiUrl + '/exploreParks/' + user.userList)
+  user && user.userFavorites
+    ? fetch(apiUrl + '/exploreParks/' + user.userFavorites)
     : fetch(apiUrl + '/exploreParks/' + '0')
 )
 
-// if the user has a userList (favoriteParks list)
+// if the user has a userFavorites (favoriteParks list)
 // then pass in the park that will be used to update the list.
-// otherwise create a userList with that item
-export const addToParks = (user, favorite) => (
+// otherwise create a userFavorites with that item
+export const addToParks = (user, favorite) => {
 
-  user.userList
-    ? fetch(apiUrl + '/favoriteParks/' + user.userList + '/updateOne', {
+
+  return user.userFavorites
+    ? fetch(apiUrl + '/favoriteParks/' + user.userFavorites + '/updateOne', {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -43,4 +44,4 @@ export const addToParks = (user, favorite) => (
         }
       })
     })
-)
+}

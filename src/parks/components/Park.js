@@ -38,7 +38,7 @@ class Park extends Component {
         .then(res => {
           setUser(
             {
-              userList: res.favoriteParks._id,
+              userFavorites: res.favoriteParks._id,
               email: user.email,
               token: user.token,
               _id: user._id
