@@ -60,7 +60,7 @@ class Park extends Component {
 
   render () {
 
-    const { parks, image, currentPark, user } = this.props
+    const { parks, image, currentPark, user, favoriteParksData } = this.props
 
     const parkImage = currentPark.images
 
@@ -90,12 +90,15 @@ class Park extends Component {
               <button value={1} onClickCapture={this.handleChange}>
                 Next Picture
               </button> }
-          { currentPark &&
-            <button onClickCapture={this.addFavorite} value={currentPark.parkCode}>
-              {/* need to modify so that it displays "remove" when the user already has this
-                park in their favoriteParks list*/}
-              Add { currentPark.name } to Favorite Parks
-            </button>
+          { user
+            ? favoriteParksData.some(fav => fav.parkCode === currentPark.parkCode)
+              ? <button onClickCapture={this.addFavorite} value={currentPark.parkCode}>
+                Remove { currentPark.name } from Favorite Parks
+              </button>
+              : <button onClickCapture={this.addFavorite} value={currentPark.parkCode}>
+                Add { currentPark.name } to Favorite Parks
+              </button>
+            : <button onClickCapture={this.addFavorite}>Sign In to add { currentPark.name } to Favorites Parks List</button>
           }
         </div>
       </div>

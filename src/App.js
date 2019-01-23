@@ -73,7 +73,9 @@ class App extends Component {
               parks={parks}
               image={image}
               currentPark={currentPark}
-              setParks={this.setParks}/>
+              setParks={this.setParks}
+              setFavorites={this.setFavorites}
+              favoriteParksData={favoriteParksData}/>
           )} />
           <Route path='/exploreParks/parks' render={() => (
             /* if a user tries go directly to a specific park before park info is
@@ -87,6 +89,7 @@ class App extends Component {
                 image={image}
                 currentPark={currentPark}
                 setUser={this.setUser}
+                favoriteParksData={favoriteParksData}
                 setFavorites={this.setFavorites}/>
           )} />
           <Route path='/favorites' render={() => (
