@@ -24,7 +24,7 @@ class ExploreParks extends Component {
   // run this as soon as the component mounts.
   // might want to revise so that the user sees a loading screen until image is loaded.
   componentDidMount () {
-    const { user, setParks, parks, image, currentPark } = this.props
+    const { user, setParks, parks, image, currentPark, setFavorites } = this.props
 
     // calls api exploreParks/:id endpoint.
     // If user is signed in, they get back their favoriteParks in addition to the default parks list.
@@ -38,7 +38,10 @@ class ExploreParks extends Component {
         )
         return res
       })
-      .then()
+      .then(res => {
+        setFavorites({favoriteParksData: res.favoriteParksData})
+        return res
+      })
       .catch(console.error)
   }
 
