@@ -25,7 +25,7 @@ class Park extends Component {
 
   // allows a user to add a park to their favoriteParks list.
   addFavorite = event => {
-    const { user, history, flash, setUser } = this.props
+    const { user, history, flash, setUser, setFavorites } = this.props
 
     // grabs the parkCode of the currentPark
     const favorite = event.target.value
@@ -36,9 +36,13 @@ class Park extends Component {
       ? addToParks(user, favorite)
         .then(res => res.json())
         .then(res => {
+          setFavorites( { favoriteParksData: res.favoriteParksData } )
+          return res
+        })
+        .then(res => {
           setUser(
             {
-              userFavorites: res.favoriteParks._id,
+              userFavorites: res.favoriteParksId,
               email: user.email,
               token: user.token,
               _id: user._id
@@ -47,6 +51,7 @@ class Park extends Component {
           return res
         }
         )
+        .then(console.log)
         .catch(console.error)
         // otherwise, redirect the user to sign-in
       : history.push('/sign-in')

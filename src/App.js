@@ -29,6 +29,7 @@ class App extends Component {
       flashMessage: '',
       flashType: null,
       parks: [],
+      favoriteParksData: null,
       image: null,
       currentPark: null
     }
@@ -43,7 +44,7 @@ class App extends Component {
   setParks = ({parks, image, currentPark}) => this.setState({ parks, image, currentPark })
 
   // a method passed down as props for setting state for parks
-  updateParks = ({parks}) => this.setState({parks})
+  setFavorites = ({favoriteParksData}) => this.setState({favoriteParksData})
 
   // flash messaging method passed down as a prop.
   flash = (message, type) => {
@@ -56,7 +57,7 @@ class App extends Component {
   }
 
   render () {
-    const { flashMessage, flashType, user, parks, image, currentPark } = this.state
+    const { flashMessage, flashType, user, parks, image, currentPark, favoriteParksData } = this.state
 
     return (
       <React.Fragment>
@@ -79,21 +80,23 @@ class App extends Component {
             fetched, they are redirected to the home page */
             !this.state.parks[0]
               ? <Redirect to='/' />
-              :<Park flash={this.flash}
+              :<Park
+                flash={this.flash}
                 user={user}
                 parks={parks}
                 image={image}
                 currentPark={currentPark}
-                setUser={this.setUser}/>
+                setUser={this.setUser}
+                setFavorites={this.setFavorites}/>
           )} />
           <Route path='/favorites' render={() => (
             !user
               ? <Redirect to='/' />
               : <Favorites
-                updateParks={this.updateParks}
+                setFavorites={this.setFavorites}
                 flash={this.flash}
                 user={user}
-                parks={parks}/>
+                favoriteParksData={favoriteParksData}/>
           )} />
           <Route path='/sign-up' render={() => (
             <SignUp flash={this.flash} setUser={this.setUser} />
