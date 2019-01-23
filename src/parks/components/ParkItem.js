@@ -10,10 +10,10 @@ class ParkItem extends Component {
 
   render () {
 
-    const { park, updateParks } = this.props
+    const { park, setFavorites } = this.props
 
     return (
-      <li>{ park && park.name}</li>
+      <li>{ park.fullName }</li>
     )
   }
 }
