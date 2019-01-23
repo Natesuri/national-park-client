@@ -64,6 +64,14 @@ class Park extends Component {
 
     const parkImage = currentPark.images
 
+    const ParkToggleButtonUi = () => favoriteParksData.some(fav => fav.parkCode === currentPark.parkCode)
+      ? <button onClickCapture={this.addFavorite} value={currentPark.parkCode}>
+        Remove { currentPark.name } from Favorite Parks
+      </button>
+      : <button onClickCapture={this.addFavorite} value={currentPark.parkCode}>
+        Add { currentPark.name } to Favorite Parks
+      </button>
+
     // sets the backgroundImage to the url in the currentPark images array at the currentImage index.
     // SHOULD FIND PLACE ON PAGE TO CREDIT THE PHOTOGRAPHER
     const background = { backgroundImage: 'url(' + parkImage[this.state.currentImage].url + ')' }
@@ -91,14 +99,10 @@ class Park extends Component {
                 Next Picture
               </button> }
           { user
-            ? favoriteParksData.some(fav => fav.parkCode === currentPark.parkCode)
-              ? <button onClickCapture={this.addFavorite} value={currentPark.parkCode}>
-                Remove { currentPark.name } from Favorite Parks
-              </button>
-              : <button onClickCapture={this.addFavorite} value={currentPark.parkCode}>
-                Add { currentPark.name } to Favorite Parks
-              </button>
-            : <button onClickCapture={this.addFavorite}>Sign In to add { currentPark.name } to Favorites Parks List</button>
+            ? <ParkToggleButtonUi />
+            : <button onClickCapture={this.addFavorite}>
+              Sign In to add { currentPark.name } to Favorites Parks List
+            </button>
           }
         </div>
       </div>
