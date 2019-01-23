@@ -13,6 +13,16 @@ export const getAllParks = ( user ) => (
     : fetch(apiUrl + '/exploreParks/' + '0')
 )
 
+export const showFavorites = (user) => (
+  fetch(apiUrl + '/favoriteParks/' + user.userFavorites, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization':`Token token=${user.token}`
+    }
+  })
+)
+
 // if the user has a userFavorites (favoriteParks list)
 // then pass in the park that will be used to update the list.
 // otherwise create a userFavorites with that item
