@@ -64,13 +64,14 @@ class Park extends Component {
 
     const parkImage = currentPark.images
 
-    const ParkToggleButtonUi = () => favoriteParksData.some(fav => fav.parkCode === currentPark.parkCode)
-      ? <button onClickCapture={this.addFavorite} value={currentPark.parkCode}>
-        Remove { currentPark.name } from Favorite Parks
-      </button>
-      : <button onClickCapture={this.addFavorite} value={currentPark.parkCode}>
-        Add { currentPark.name } to Favorite Parks
-      </button>
+    const ParkToggleButtonUi = () =>
+      favoriteParksData && favoriteParksData.some(fav => fav.parkCode === currentPark.parkCode)
+        ? <button onClickCapture={this.addFavorite} value={currentPark.parkCode}>
+          Remove { currentPark.name } from Favorite Parks
+        </button>
+        : <button onClickCapture={this.addFavorite} value={currentPark.parkCode}>
+          Add { currentPark.name } to Favorite Parks
+        </button>
 
     // sets the backgroundImage to the url in the currentPark images array at the currentImage index.
     // SHOULD FIND PLACE ON PAGE TO CREDIT THE PHOTOGRAPHER
