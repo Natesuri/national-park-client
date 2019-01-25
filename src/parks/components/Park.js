@@ -51,7 +51,6 @@ class Park extends Component {
           return res
         }
         )
-        .then(console.log)
         .catch(console.error)
         // otherwise, redirect the user to sign-in
       : history.push('/sign-in')

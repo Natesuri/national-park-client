@@ -21,7 +21,6 @@ class ParkItem extends Component {
         setFavorites( { favoriteParksData: res.favoriteParksData } )
         return res
       })
-      .then(console.log)
       .catch(console.error)
       // otherwise, redirect the user to sign-in
   }
