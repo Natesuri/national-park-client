@@ -10,6 +10,8 @@ class ExploreParks extends Component {
 
   }
 
+  // When there is a change via the select input,
+  // set the currentPark and image to selected park
   handleChange = event => {
     const { parks, setParks } = this.props
     setParks({
@@ -19,9 +21,13 @@ class ExploreParks extends Component {
     })
   }
 
+  // run this as soon as the component mounts.
+  // might want to revise so that the user sees a loading screen until image is loaded.
   componentDidMount () {
-    const { user, setParks, parks, image, currentPark } = this.props
+    const { user, setParks, parks, image, currentPark, setFavorites } = this.props
 
+    // calls api exploreParks/:id endpoint.
+    // If user is signed in, they get back their favoriteParks in addition to the default parks list.
     getAllParks(user)
       .then(res => res.json())
       .then(res => {
@@ -32,18 +38,25 @@ class ExploreParks extends Component {
         )
         return res
       })
-      .then()
+      .then(res => {
+        setFavorites({favoriteParksData: res.favoriteParksData})
+        return res
+      })
       .catch(console.error)
   }
 
   render () {
     const { parks, image, currentPark } = this.props
 
+    // sets the .exploreParks background-image to to the state image's url
     const background = { backgroundImage: 'url(' + image + ')' }
     return (
       <div className='exploreParks' style={background}>
         { currentPark && <h1>{currentPark.name}</h1>}
         <div className='buttons'>
+          { /* creates a select for each park in the parks state.
+            Setting value to the index allows for handleChange to easily
+            set currentPark and image to the selected index in parks */ }
           <select name='currentPark' onChange={this.handleChange}>
             { parks.map((park, parkIndex) => (
               <option key={ parkIndex } value={ parkIndex }>{ park.name }</option>

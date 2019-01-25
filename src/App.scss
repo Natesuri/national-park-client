@@ -29,10 +29,11 @@ $charcoal: #ccc;
   background-color: $error;
 }
 
-// .sidebar {
-//   width: 0;
-//   transition: width 1s;
-// }
+.favorites {
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+}
 
 .home {
   background-image: url('./images/yosemite_2k-px.jpg');
@@ -141,5 +142,29 @@ $charcoal: #ccc;
   button {
     align-self: flex-end;
     max-width: 200px;
+  }
+}
+
+.parkItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background: lightgreen;
+  padding: 0 20px;
+  margin: 10px;
+  width: 40%;
+
+  span {
+    align-self: center;
+  }
+
+  button {
+    &:focus {
+      outline: none;
+    }
+    width: 30%;
+    border-radius: 20px;
+    height: 50px;
+    margin: 15px 20px;
   }
 }
