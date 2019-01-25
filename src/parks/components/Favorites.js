@@ -19,7 +19,6 @@ class Favorites extends Component {
         setFavorites({favoriteParksData: res.favoriteParksData})
         return res
       })
-      .then(res => console.log(favoriteParksData))
       .catch(console.error)
 
 
@@ -27,14 +26,14 @@ class Favorites extends Component {
 
   render () {
 
-    const { favoriteParksData, setFavorites } = this.props
+    const { favoriteParksData, setFavorites, user } = this.props
 
     return (
       <React.Fragment>
         <ul>
           { favoriteParksData &&
             favoriteParksData.map((park, parkIndex) => (
-              <ParkItem key={ parkIndex } park={ park } setFavorites={ setFavorites } />
+              <ParkItem key={ parkIndex } park={ park } user={user} setFavorites={ setFavorites } />
             )) }
         </ul>
       </React.Fragment>
