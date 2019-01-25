@@ -31,10 +31,10 @@ class ParkItem extends Component {
     const { park } = this.props
 
     return (
-      <li>
-        { park.fullName }|
-        <button onClickCapture={this.removeFavorite} value={park.parkCode}>Remove Park</button>
-      </li>
+      <p className='parkItem'>
+        <span>{ park.fullName }</span>
+        <button  onClickCapture={this.removeFavorite} value={park.parkCode}>Remove Park</button>
+      </p>
     )
   }
 }

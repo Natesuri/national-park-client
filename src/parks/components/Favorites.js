@@ -30,11 +30,13 @@ class Favorites extends Component {
 
     return (
       <React.Fragment>
-        <ul>
-          { favoriteParksData &&
-            favoriteParksData.map((park, parkIndex) => (
+        <ul className='favorites'>
+          { favoriteParksData
+            ? favoriteParksData.map((park, parkIndex) => (
               <ParkItem key={ parkIndex } park={ park } user={user} setFavorites={ setFavorites } />
-            )) }
+            ))
+            : <p>You do not have any favorite parks. <Link to={'/exploreParks'}>Go explore some!</Link></p>
+          }
         </ul>
       </React.Fragment>
     )
