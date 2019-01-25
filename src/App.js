@@ -61,7 +61,7 @@ class App extends Component {
 
     return (
       <React.Fragment>
-        <Header user={user} />
+        <Header user={user} favoriteParksData={favoriteParksData} />
         {flashMessage && <h3 className={flashType}>{flashMessage}</h3>}
 
         <div className="">
