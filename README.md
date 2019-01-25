@@ -28,7 +28,7 @@ The backend uses the remainder of the MERN stack: Mongo, Express, and Node.
 
 #### Open-source Contribution
 
-If anyone wants to contribute to the project, please fork and clone this repo, then run `npm instal`l to make sure the correct versions of all dependencies have been installed.
+If anyone wants to contribute to the project, please fork and clone this repo, then run `npm install` to make sure the correct versions of all dependencies have been installed.
 
 ##### Possible Features to work on
 
