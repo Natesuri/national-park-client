@@ -3,6 +3,18 @@ $warning: #f1e681;
 $error: #f08181;
 $charcoal: #ccc;
 
+$white80: rgba(400, 400, 400, 0.8);
+
+select {
+  text-align: center;
+  text-align-last: center;
+  background-color: $white80;
+}
+
+button {
+  background-color: $white80;
+}
+
 .flash-success,
 .flash-warning,
 .flash-error {
@@ -88,7 +100,7 @@ $charcoal: #ccc;
     font-size: 22px;
   }
 
-  background: rgba(400, 400, 400, 0.8);
+  background: $white80;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -166,5 +178,26 @@ $charcoal: #ccc;
     border-radius: 20px;
     height: 50px;
     margin: 15px 20px;
+  }
+}
+
+@media (max-width: 420px) {
+  .park {
+    height: auto;
+    padding: 50px 0 0 0;
+  }
+
+  .info {
+    width: 90%;
+  }
+
+  .buttons {
+    select {
+      width: 80%;
+    }
+
+    button {
+      width: 80%;
+    }
   }
 }
