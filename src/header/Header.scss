@@ -50,9 +50,13 @@ $charcoal: #bbb;
     flex-direction: column;
     width: 100%;
 
+    > .title {
+      background-color: rgba(189, 195, 199, 0);
+    }
+
     a,
     span {
-      border: 1px solid $charcoal;
+      background-color: rgba(189, 195, 199, 0.3);
       margin-bottom: 5px;
       text-align: center;
       width: 80%;
@@ -62,4 +66,10 @@ $charcoal: #bbb;
   .main-header > .username {
     order: 99;
 
+    span {
+      width: auto;
+      background-color: rgba(189, 195, 199, 0);
+      border-bottom: 1px rgba(189, 195, 199, 0.8) solid;
+    }
+  }
 }
