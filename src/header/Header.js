@@ -19,10 +19,12 @@ const unauthenticatedOptions = (
 
 const Header = ({ user }) => (
   <header className="main-header">
-    <h4><Link to="/">National Park Finder</Link></h4>
-    { user && user.userFavorites && <Link to="/favorites">My favorites</Link>}
+    <nav className='left-nav'>
+      <Link to="/" className='title'><h4>National Park Finder</h4></Link>
+      { user && user.userFavorites && <Link to="/favorites">My Favorites</Link>}
+    </nav>
+    <nav className='username'>{ user && <span> { user.email }</span>}</nav>
     <nav>
-      { user && <span>Welcome, {user.email}</span>}
       { user ? authenticatedOptions : unauthenticatedOptions }
     </nav>
   </header>
