@@ -2,8 +2,10 @@ $charcoal: #bbb;
 
 .main-header {
   align-items: center;
+  background: #ecf0f1;
   border-bottom: 1px solid $charcoal;
   display: flex;
+  justify-content: space-between;
   height: 8vh;
   padding: 0 20px;
 
@@ -19,6 +21,15 @@ $charcoal: #bbb;
   display: flex;
   flex-grow: 1;
   justify-content: flex-end;
+}
+
+.main-header > .left-nav {
+  justify-content: flex-start;
+  flex-grow: 0;
+}
+
+.main-header > .username {
+  justify-content: flex-start;
 }
 
 @media (max-width: 600px) {
@@ -47,4 +58,8 @@ $charcoal: #bbb;
       width: 80%;
     }
   }
+
+  .main-header > .username {
+    order: 99;
+
 }
