@@ -5,6 +5,10 @@ $charcoal: #ccc;
 
 $white80: rgba(400, 400, 400, 0.8);
 
+body {
+  background: #ecf0f1;
+}
+
 select {
   text-align: center;
   text-align-last: center;
@@ -181,7 +185,7 @@ button {
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 600px) {
   .park {
     height: auto;
     padding: 50px 0 0 0;

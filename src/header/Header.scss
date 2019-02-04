@@ -43,20 +43,19 @@ $charcoal: #bbb;
       font-size: 2.5em;
     }
   }
-}
 
-@media (max-width: 450px) {
   .main-header > nav {
     flex-direction: column;
     width: 100%;
 
     > .title {
-      background-color: rgba(189, 195, 199, 0);
+      text-decoration: none;
     }
 
     a,
     span {
-      background-color: rgba(189, 195, 199, 0.3);
+      font-size: 16px;
+      text-decoration: underline;
       margin-bottom: 5px;
       text-align: center;
       width: 80%;
@@ -68,7 +67,7 @@ $charcoal: #bbb;
 
     span {
       width: auto;
-      background-color: rgba(189, 195, 199, 0);
+      text-decoration: none;
       border-bottom: 1px rgba(189, 195, 199, 0.8) solid;
     }
   }
