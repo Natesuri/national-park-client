@@ -2,8 +2,10 @@ $charcoal: #bbb;
 
 .main-header {
   align-items: center;
+  background: #ecf0f1;
   border-bottom: 1px solid $charcoal;
   display: flex;
+  justify-content: space-between;
   height: 8vh;
   padding: 0 20px;
 
@@ -21,6 +23,15 @@ $charcoal: #bbb;
   justify-content: flex-end;
 }
 
+.main-header > .left-nav {
+  justify-content: flex-start;
+  flex-grow: 0;
+}
+
+.main-header > .username {
+  justify-content: flex-start;
+}
+
 @media (max-width: 600px) {
   .main-header {
     flex-direction: column;
@@ -32,19 +43,32 @@ $charcoal: #bbb;
       font-size: 2.5em;
     }
   }
-}
 
-@media (max-width: 450px) {
   .main-header > nav {
     flex-direction: column;
     width: 100%;
 
+    > .title {
+      text-decoration: none;
+    }
+
     a,
     span {
-      border: 1px solid $charcoal;
+      font-size: 16px;
+      text-decoration: underline;
       margin-bottom: 5px;
       text-align: center;
       width: 80%;
+    }
+  }
+
+  .main-header > .username {
+    order: 99;
+
+    span {
+      width: auto;
+      text-decoration: none;
+      border-bottom: 1px rgba(189, 195, 199, 0.8) solid;
     }
   }
 }
